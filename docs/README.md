@@ -1,11 +1,21 @@
-# AkariPool ドキュメント
+# AkariPool Documentation（公開版）
 
-> 最終更新: 2026-04-09
+> **このリポの立ち位置**: AkariPool の**公開ドキュメント版**。仕様・API リファレンス・Getting Started を公開する場所。
+> **扱う範囲**: 公開 API、プロトコル仕様、Getting Started、外部統合ガイド、公開 Phase ロードマップ
+> **扱わない範囲**: Rust 実装コード（→ `PJ26c23_AkariPool`）、非公開戦略・競合分析（→ Hub `PJ26c21_AkariOS/docs/strategy/`）
+>
+> - 🌐 正典: [Akari-OS](https://github.com/Akari-OS)
+> - 🏛 Hub（非公開）: `PJ26c21_AkariOS` — 横断研究・戦略・Master Index
+> - 🗺 全リポマップ: `PJ26c21_AkariOS/MAP.md`
 
-**AkariPool は [AkariOS](../../PJ26c21_AkariOS) の中核データ層。**
+---
+
+> 最終更新: 2026-04-13
+
+**AkariPool は AKARI エコシステムの中核データ層。**
 AI エージェントのための汎用 Knowledge Store。動画・音声・画像・PDF・記事・コード・データセット — どんなモダリティのデータでも入る、ローカルファーストのデータ基盤。
 
-プロジェクト全体の北極星・設計思想は上位 `CLAUDE.md` を参照。このリポジトリのドキュメントは **Knowledge Store としての要件・設計・進捗** を扱う。
+実装リポ（非公開・Rust 本体）は `PJ26c23_AkariPool`。本リポはその公開ドキュメント版。
 
 ## ドキュメント駆動開発
 
@@ -30,15 +40,9 @@ docs/
 ├── design/                ← 要件・アーキテクチャ・個別設計
 ├── integration/           ← 外部システム統合
 ├── planning/              ← ロードマップ・タスク管理
+├── api/                   ← 公開 API リファレンス
 └── handoff-YYYY-MM-DD.md  ← セッション末スナップショット
 ```
-
-各ディレクトリの役割：
-
-- **design/** — 「何を作るか」「どう作るか」。要件定義（`requirements.md`）と各モジュールの詳細設計を置く
-- **integration/** — AkariPool と外部システム（Obsidian / AKARI Video 等）との接続設計
-- **planning/** — 「いつ・どの順で作るか」。Phase ロードマップと実行可能タスクリスト
-- **handoff-\*.md** — セッション跨ぎの状態スナップショット。Phase 完了や大きな区切りで作成し、次セッション開始時のウォームアップ文書として使う
 
 ---
 
@@ -78,12 +82,11 @@ docs/
 
 ## 新規参加者の読む順序
 
-1. **`../CLAUDE.md`** — プロジェクト北極星・設計思想・技術スタック
-2. **`README.md`（本ファイル）** — ドキュメント全体の地図
-3. **`planning/roadmap.md`** — Phase ビジョンと依存関係
-4. **`design/requirements.md`** — FR / NFR / AC（何を満たせば完了か）
-5. **`design/architecture.md`** — 全体アーキテクチャ
-6. **`planning/tasks.md`** — 今の実装状況と次のタスク
-7. **最新の `handoff-*.md`** — セッション再開のための state スナップショット
+1. **本 README**（全体の地図）
+2. **`planning/roadmap.md`** — Phase ビジョンと依存関係
+3. **`design/requirements.md`** — FR / NFR / AC（何を満たせば完了か）
+4. **`design/architecture.md`** — 全体アーキテクチャ
+5. **`planning/tasks.md`** — 今の実装状況と次のタスク
+6. **最新の `handoff-*.md`** — セッション再開のための state スナップショット
 
 個別トピックを深掘りするときは `design/` 配下の該当ファイルへ。
