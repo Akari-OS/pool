@@ -2,7 +2,7 @@
 
 > **バージョン**: v0.3 (2026-04-22 HUB-017: Workspace 概念を分離)
 > **最終更新**: 2026-04-22
-> **対応 Crate**: `crates/pool-workspace`
+> **対応 Crate**: `crates/pool-library`
 
 > **注**: 本ファイルは長命な Library（旧 workspace）の設計書。短命な session-scoped workspace は [`./workspace-session-layer.md`](./workspace-session-layer.md) を参照。
 
@@ -405,7 +405,7 @@ if !canonical.starts_with(&base.canonicalize()?) {
 
 ## 10. 参考実装
 
-実装は Phase 2 で `crates/pool-workspace/` に着手。本ドキュメントは API 契約として更新していく。
+実装は Phase 2 で `crates/pool-library/` に着手。本ドキュメントは API 契約として更新していく。
 
 関連:
 - [`architecture.md`](./architecture.md) — 全体アーキテクチャ
