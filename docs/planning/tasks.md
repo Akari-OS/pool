@@ -67,16 +67,16 @@ Phase 3 の追加 Analyzer（Image / Audio / PDF / Code / Video / Dataset）は 
 
 ## Phase 2 — Workspace 隔離 + 横断検索 ✅
 
-- [x] **T2.1** `Pool` を workspace マネージャに refactor（`HashMap<String, Arc<Workspace>>`） (FR-01-09)
-- [x] **T2.2** `Workspace` 構造体 + CRUD + `workspace.toml` (FR-01-03, FR-01-04, FR-01-08)
+- [x] **T2.1** `Pool` を library マネージャに refactor（`HashMap<String, Arc<Library>>`） (FR-01-09)
+- [x] **T2.2** `Library` 構造体 + CRUD + `library.toml` (FR-01-03, FR-01-04, FR-01-08)
 - [x] **T2.3** `GlobalConfig` (`~/.akari-pool/config.toml`) (FR-01-07)
-- [x] **T2.4** カレント workspace 解決（`--workspace` > env > config > `"default"`） (FR-01-05)
+- [x] **T2.4** カレント library 解決（`--library` > env > config > `"default"`） (FR-01-05)
 - [x] **T2.5** パストラバーサル対策（lexical 検査） (FR-01-06, NFR-04-03)
 - [x] **T2.6** FTS5 検索（カレント + `--cross`） (FR-03-01, FR-03-02, FR-03-04)
 - [x] **T2.7** `ItemType / Role / Layer` に `Display + FromStr` (FR-02-08)
-- [x] **T2.8** `db.rs` 削除 → `pool.rs` + `workspace.rs` に責務分離
+- [x] **T2.8** `db.rs` 削除 → `pool.rs` + `library.rs` に責務分離
 - [x] **T2.9** Review 修正: SQL injection / cross_search 取りこぼし / パストラバーサルバイパス / DRY
-- [x] **AC**: `workspace create / list / use / info / delete --confirm` が動作、`search --cross` で全 workspace 横断可能
+- [x] **AC**: `library create / list / use / info / delete --confirm` が動作、`search --cross` で全 library 横断可能
 
 ---
 
@@ -184,8 +184,8 @@ Phase 4 で積み残した Lint チェッカー 2 種を完成させ、Relation 
 - [ ] **T6.1** `rmcp` crate 最新バージョン確認 + `pool-mcp` 実装 (FR-10-01)
 - [ ] **T6.2** stdio + Streamable HTTP 両対応 (FR-10-02)
 - [ ] **T6.3** MCP ツール: `pool_ls / pool_cat / pool_grep / pool_search / pool_add / pool_lint / pool_compile_notes` (FR-10-03)
-- [ ] **T6.4** MCP リソース: `pool://item/{id}` / `pool://workspace/{name}` / `m2c://item/{id}/context` (FR-10-04)
-- [ ] **T6.5** workspace 引数はセッション初期化時に固定 (FR-10-05)
+- [ ] **T6.4** MCP リソース: `pool://item/{id}` / `pool://library/{name}` / `m2c://item/{id}/context` (FR-10-04)
+- [ ] **T6.5** library 引数はセッション初期化時に固定 (FR-10-05)
 - [ ] **T6.6** `akari-pool mcp-serve [--http] [--port]` (FR-09-13)
 - [ ] **T6.7** AKARI Video の既存 MCP と整合性確認 (FR-10-06)
 - [ ] **T6.8** 実機テスト: Claude Code から接続し `pool_search` を呼ぶ
@@ -199,7 +199,7 @@ Phase 4 で積み残した Lint チェッカー 2 種を完成させ、Relation 
 
 - [ ] **T7.1** AKARI Video 側の Pool DB 層を `pool-core` に置換 (FR-11-01)
 - [ ] **T7.2** `VideoAnalyzer` 実装（FFmpeg + Vision、M2C video） (FR-04-12)
-- [ ] **T7.3** 動画系 workspace（例: `wedding-2026`）での実運用テスト
+- [ ] **T7.3** 動画系 library（例: `wedding-2026`）での実運用テスト
 - [ ] **T7.4** AKARI Video 側の回帰テスト
 - [ ] **AC**: AKARI Video が `pool-core` だけで動作、`add video.mp4 --analyze` で字幕・シーン情報が DB に入る
 
@@ -211,7 +211,7 @@ Phase 4 で積み残した Lint チェッカー 2 種を完成させ、Relation 
 
 - [ ] **T8.1** AkariNotes（Obsidian 風ビュー、ノート系アイテム） (FR-11-03)
 - [ ] **T8.2** AkariCMS（記事系アイテム編集 CMS）
-- [ ] **T8.3** AkariSearch（全 workspace 横断検索 Web UI）
+- [ ] **T8.3** AkariSearch（全 library 横断検索 Web UI）
 - [ ] **T8.4** AkariBot（Slack/Discord で Pool 検索）
 - [ ] **AC**: 少なくとも 2 つの別消費者アプリが同じ pool.db を参照して動く
 
