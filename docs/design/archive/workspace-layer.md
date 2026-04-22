@@ -1,5 +1,12 @@
 # Workspace 層 設計書
 
+> **[非推奨 / DEPRECATED]**
+> 本ドキュメントは旧設計書です。HUB-017（2026-04-22）で Workspace 概念が Library と Session/Workspace に分離されました。
+> **現行ドキュメントは [`../library-layer.md`](../library-layer.md) を参照してください。**
+> 本ファイルは履歴保存のため archive に残しています。内容の更新は行いません。
+
+---
+
 > **バージョン**: v0.1 Draft
 > **最終更新**: 2026-04-08
 > **対応 Crate**: `crates/pool-workspace`
