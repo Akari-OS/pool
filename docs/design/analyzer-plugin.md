@@ -651,7 +651,7 @@ LLM 呼び出しが失敗しても部分的な結果を保存:
 
 1. **新しい crate を作る**
    ```bash
-   cd ~/_project/PJ26c23_AkariPool
+   cd ~/_project/akari-pool-impl
    cargo new --lib analyzers/my-format
    ```
 

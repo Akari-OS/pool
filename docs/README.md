@@ -2,11 +2,11 @@
 
 > **このリポの立ち位置**: AkariPool の**公開ドキュメント版**。仕様・API リファレンス・Getting Started を公開する場所。
 > **扱う範囲**: 公開 API、プロトコル仕様、Getting Started、外部統合ガイド、公開 Phase ロードマップ
-> **扱わない範囲**: Rust 実装コード（→ `PJ26c23_AkariPool`）、非公開戦略・競合分析（→ Hub `PJ26c21_AkariOS/docs/strategy/`）
+> **扱わない範囲**: Rust 実装コード（→ `akari-pool-impl`）、非公開戦略・競合分析（→ Hub `akari-os/docs/strategy/`）
 >
 > - 🌐 正典: [Akari-OS](https://github.com/Akari-OS)
-> - 🏛 Hub（非公開）: `PJ26c21_AkariOS` — 横断研究・戦略・Master Index
-> - 🗺 全リポマップ: `PJ26c21_AkariOS/MAP.md`
+> - 🏛 Hub（非公開）: `akari-os` — 横断研究・戦略・Master Index
+> - 🗺 全リポマップ: `akari-os/MAP.md`
 
 ---
 
@@ -15,7 +15,7 @@
 **AkariPool は AKARI エコシステムの中核データ層。**
 AI エージェントのための汎用 Knowledge Store。動画・音声・画像・PDF・記事・コード・データセット — どんなモダリティのデータでも入る、ローカルファーストのデータ基盤。
 
-実装リポ（非公開・Rust 本体）は `PJ26c23_AkariPool`。本リポはその公開ドキュメント版。
+実装リポ（非公開・Rust 本体）は `akari-pool-impl`。本リポはその公開ドキュメント版。
 
 ## ドキュメント駆動開発
 
