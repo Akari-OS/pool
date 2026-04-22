@@ -12,7 +12,7 @@
 | ID | 名称 | 説明 |
 |----|------|------|
 | P1 | AI エージェント | Claude Code / Cursor / 自作 Agent 等。MCP 経由で AkariPool を叩き、知識を検索・追加・分析する |
-| P2 | 個人の知識蓄積者 | ryoma-nakajima 想定。動画・記事・ノート等を日常的に投入し、後から横断検索して再利用する |
+| P2 | 個人の知識蓄積者 | 開発者個人ユースケースを想定。動画・記事・ノート等を日常的に投入し、後から横断検索して再利用する |
 | P3 | 消費者アプリ開発者 | AKARI Video / 将来の AkariNotes / AkariCMS / AkariSearch 等。pool-core crate を依存に取り込み、モダリティ特化の編集ビューを提供する |
 
 ---

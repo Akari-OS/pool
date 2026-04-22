@@ -3,7 +3,7 @@
 > **バージョン**: v0.1 Draft
 > **最終更新**: 2026-04-08
 > **プラグイン名（仮）**: `obsidian-akari-pool`
-> **将来のリポジトリ**: `~/_project/PJ26c2X_ObsidianAkariPool/`（独立プロジェクト化を推奨）
+> **将来のリポジトリ**: `Akari-OS/obsidian-pool`（将来リポ名・未作成。独立プロジェクト化を推奨）
 
 ---
 
@@ -418,7 +418,7 @@ size_mb: 245
 ## 13. 未解決の論点
 
 - [ ] **複数 workspace の同時表示**: 1つの Obsidian ウィンドウで複数 workspace を見たい場合の UI
-- [ ] **プラグインを別プロジェクトとして独立化するか**: `PJ26c2X_ObsidianAkariPool/` を作るタイミング
+- [ ] **プラグインを別プロジェクトとして独立化するか**: `Akari-OS/obsidian-pool`（将来リポ名・未作成）を作るタイミング
 - [ ] **Cross-platform**: Windows / Linux ユーザーへの対応優先度
 - [ ] **モバイル対応**: Obsidian Mobile からの利用は可能か（iOS だと SQLite ネイティブが厳しい）
 - [ ] **AkariPool MCP との認証**: OAuth フロー or トークン
