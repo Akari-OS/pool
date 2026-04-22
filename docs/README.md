@@ -10,7 +10,7 @@
 
 ---
 
-> 最終更新: 2026-04-13
+> 最終更新: 2026-04-22
 
 **AkariPool は AKARI エコシステムの中核データ層。**
 AI エージェントのための汎用 Knowledge Store。動画・音声・画像・PDF・記事・コード・データセット — どんなモダリティのデータでも入る、ローカルファーストのデータ基盤。
@@ -58,6 +58,9 @@ docs/
 | [analyzer-plugin.md](design/analyzer-plugin.md) | Analyzer trait、モダリティ別プラグイン設計、Registry |
 | [llm-strategy.md](design/llm-strategy.md) | LLM モデル戦略 — OpenRouter 主力、プリセット 6 種、リトライ |
 | [akari-video-integration.md](design/akari-video-integration.md) | AKARI Video 側を pool-core 依存に切り替える段取り |
+| [library-layer.md](design/library-layer.md) | Library 隔離モデル — 目的別作業空間・横断検索・物理構造 |
+| [workspace-session-layer.md](design/workspace-session-layer.md) | Workspace / Session 層 — 短命作業領域・focus.md・CAA 連携 |
+| [workflow-layer.md](design/workflow-layer.md) | Workflow 層 — Skill / Workflow / Template フレームワーク・Runner |
 
 ### integration/ — 外部統合
 
