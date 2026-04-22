@@ -54,7 +54,7 @@ docs/
 |---|---|
 | [requirements.md](design/requirements.md) | 機能要件（FR）・非機能要件（NFR）・受入条件（AC）・ユースケース |
 | [architecture.md](design/architecture.md) | 全体アーキテクチャ — crate 構成、データモデル、MCP/CLI 層 |
-| [workspace-layer.md](design/workspace-layer.md) | Workspace 隔離モデル、現在 workspace の解決、横断検索 |
+| [workspace-layer.md](design/archive/workspace-layer.md) | **[非推奨]** Workspace 隔離モデル旧設計書 → [library-layer.md](design/library-layer.md) を参照 |
 | [analyzer-plugin.md](design/analyzer-plugin.md) | Analyzer trait、モダリティ別プラグイン設計、Registry |
 | [llm-strategy.md](design/llm-strategy.md) | LLM モデル戦略 — OpenRouter 主力、プリセット 6 種、リトライ |
 | [akari-video-integration.md](design/akari-video-integration.md) | AKARI Video 側を pool-core 依存に切り替える段取り |

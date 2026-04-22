@@ -341,16 +341,16 @@ pub enum FiledBackAction {
 ### 6-1. Rust crate API（pool-core）
 
 ```rust
-use akari_pool::{Pool, Workspace, PoolItem, ItemType};
+use akari_pool::{Pool, Library, PoolItem, ItemType};
 
 // プールを開く
 let pool = Pool::open("~/.akari-pool")?;
 
-// Workspace を取得 or 作成
-let ws = pool.workspace_or_create("wedding-2026")?;
+// Library を取得 or 作成
+let lib = pool.library_or_create("wedding-2026")?;
 
 // アイテム追加（Analyzer 自動選択 + 非同期分析）
-let item_id = ws.add_item(AddRequest {
+let item_id = lib.add_item(AddRequest {
     file_path: "./ceremony.mp4".into(),
     item_type: None,  // None = MIME type から自動判定
     role: Some(Role::Source),
@@ -359,7 +359,7 @@ let item_id = ws.add_item(AddRequest {
 }).await?;
 
 // 検索
-let results = ws.search(SearchRequest {
+let results = lib.search(SearchRequest {
     query: "結婚式 笑顔".into(),
     item_types: Some(vec![ItemType::Video]),
     limit: 20,
@@ -373,11 +373,11 @@ let cross = pool.cross_search("RAG").await?;
 ### 6-2. CLI（akari-pool）
 
 ```bash
-# Workspace
-akari-pool workspace list
-akari-pool workspace create wedding-2026
-akari-pool workspace use wedding-2026   # 現在の workspace を切り替え
-akari-pool workspace info
+# Library
+akari-pool library list
+akari-pool library create wedding-2026
+akari-pool library use wedding-2026   # 現在の library を切り替え
+akari-pool library info
 
 # Item CRUD
 akari-pool add ./ceremony.mp4
@@ -415,10 +415,10 @@ akari-pool mcp-serve --http --port 7890
 
 ### 6-3. MCP Server
 
-詳細は Phase 6 設計時に `docs/api/mcp-tools.md` に分離。
+詳細は Phase 6 設計時に別ドキュメントに分離。
 
 **Resources**:
-- `pool://workspace/{name}` — Workspace メタ情報
+- `pool://library/{name}` — Library メタ情報
 - `pool://item/{id}` — アイテム本体（mime_type に応じて）
 - `pool://item/{id}/thumbnail` — サムネイル（動画/画像）
 - `m2c://item/{id}/context` — 構造化コンテキスト JSON
@@ -428,7 +428,7 @@ akari-pool mcp-serve --http --port 7890
 - `pool_ls`, `pool_cat`, `pool_grep`, `pool_search`
 - `pool_add`, `pool_link`, `pool_relations`
 - `pool_lint`, `pool_compile_notes`
-- `pool_analyze`, `pool_workspace_*`
+- `pool_analyze`, `pool_library_*`
 
 **Subscribe**:
 - `notifications/resources/updated` — Pool 変更時に通知（Filed back の即座反映）

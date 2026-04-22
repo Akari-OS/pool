@@ -69,7 +69,7 @@ AI との会話で発見された関係性を自動で蓄積する **Filed back 
 
 1. **モダリティ中立** — Video/Audio/Image/PDF/Code を同じ抽象で扱う。新モダリティは trait 実装で追加可能
 2. **Raw + Wiki の二段構え** — 生データは永久保存、Wiki 層で AI 整形・圧縮
-3. **Workspace 隔離** — プロジェクトごとに分離、明示的に横断可能
+3. **Library 隔離** — プロジェクトごとに分離、明示的に横断可能
 4. **Linting（自己治癒）** — 表記揺れ検出・関係抜け補完・未分類アラート
 5. **Filed back ループ** — AI との対話で発見された関係性を自動追記
 6. **ローカルファースト + AGPL** — 全データはあなたのマシンに留まる
@@ -85,32 +85,32 @@ AkariPool は 3 つのインターフェースを提供します：
 ### 1. Rust Crate（他の Rust アプリから直接依存）
 
 ```rust
-use akari_pool::{Pool, Workspace, Item};
+use akari_pool::{Pool, Library, Item};
 
 let pool = Pool::open("~/.akari-pool")?;
-let ws = pool.workspace("wedding-2026")?;
-let items = ws.search("結婚式")?;
+let lib = pool.library("wedding-2026")?;
+let items = lib.search("結婚式")?;
 ```
 
 ### 2. CLI (`akari-pool`)
 
 ```bash
-akari-pool workspace create wedding-2026
-akari-pool add ./video.mp4 --workspace wedding-2026
-akari-pool ls --workspace wedding-2026
-akari-pool grep "BGM" --workspace wedding-2026
-akari-pool search "明るい" --cross   # 全 workspace 横断
+akari-pool library create wedding-2026
+akari-pool add ./video.mp4 --library wedding-2026
+akari-pool ls --library wedding-2026
+akari-pool grep "BGM" --library wedding-2026
+akari-pool search "明るい" --cross   # 全 library 横断
 ```
 
 ### 3. MCP Server（Claude Code / Cursor / 他 AI と接続）
 
 ```bash
-akari-pool mcp-serve --workspace wedding-2026
+akari-pool mcp-serve --library wedding-2026
 akari-pool mcp-serve --http --port 7890
 ```
 
 **提供ツール**: `pool_ls`, `pool_cat`, `pool_grep`, `pool_search`, `pool_add`, `pool_lint`, `pool_compile_notes`, ...
-**提供リソース**: `pool://item/{id}`, `pool://workspace/{name}`, `m2c://item/{id}/context`
+**提供リソース**: `pool://item/{id}`, `pool://library/{name}`, `m2c://item/{id}/context`
 
 ---
 
@@ -118,7 +118,7 @@ akari-pool mcp-serve --http --port 7890
 
 - 📖 [**アーキテクチャ**](./docs/design/architecture.md) — Pool の内部構造
 - 📝 [**要件定義**](./docs/design/requirements.md) — FR / NFR / AC
-- 🗺 [**Workspace 設計**](./docs/design/workspace-layer.md) — 隔離モデル
+- 🗺 [**Library 設計**](./docs/design/library-layer.md) — 隔離モデル
 - 🧩 [**Analyzer Plugin**](./docs/design/analyzer-plugin.md) — モダリティ拡張方法
 - 🧠 [**LLM 戦略**](./docs/design/llm-strategy.md) — LLM の使い方
 - 🗓 [**ロードマップ**](./docs/planning/roadmap.md) — Phase 別計画
@@ -151,7 +151,7 @@ AkariPool は [**Akari-OS**](https://github.com/Akari-OS) エコシステムの 
 
 現在実装中：
 - ✅ SQLite + FTS5 基盤
-- ✅ Workspace 隔離 + 横断検索
+- ✅ Library 隔離 + 横断検索
 - ✅ ArticleAnalyzer (MVP)
 - ✅ Wiki compile + Relations CRUD + Linter (2/4 種)
 - 🟡 **次**: Inconsistency / ConnectionGap Linter + Relation CLI

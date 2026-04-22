@@ -43,10 +43,10 @@
 | FR-01-01 | `Pool::open(root)` で AkariPool ルートを初期化し、SQLite schema v1 を自動適用 | Must | ✅ Phase 1 |
 | FR-01-02 | WAL モードで SQLite を開く | Must | ✅ Phase 1 |
 | FR-01-03 | Workspace の作成 / 一覧 / 情報取得 / 削除 | Must | ✅ Phase 2 |
-| FR-01-04 | 各 Workspace は独立した `pool.db` / `files/` / `notes/` / `workspace.toml` を持つ | Must | ✅ Phase 2 |
-| FR-01-05 | 現在 Workspace の解決順序: `--workspace` フラグ > `AKARI_POOL_WORKSPACE` env > `config.toml` > `"default"` | Must | ✅ Phase 2 |
-| FR-01-06 | パストラバーサル対策（workspace 名の lexical 検査） | Must | ✅ Phase 2 |
-| FR-01-07 | `GlobalConfig` を `~/.akari-pool/config.toml` に永続化（current_workspace 等） | Must | ✅ Phase 2 |
+| FR-01-04 | 各 Library は独立した `pool.db` / `files/` / `notes/` / `library.toml` を持つ | Must | ✅ Phase 2 |
+| FR-01-05 | 現在 Library の解決順序: `--library` フラグ > `AKARI_POOL_LIBRARY` env > `config.toml` > `"default"` | Must | ✅ Phase 2 |
+| FR-01-06 | パストラバーサル対策（library 名の lexical 検査） | Must | ✅ Phase 2 |
+| FR-01-07 | `GlobalConfig` を `~/.akari-pool/config.toml` に永続化（current_library 等） | Must | ✅ Phase 2 |
 | FR-01-08 | Workspace に display 名・icon を設定可能 | Should | ✅ Phase 2 |
 | FR-01-09 | `Pool` 内で Workspace を `HashMap<String, Arc<Workspace>>` キャッシュ | Should | ✅ Phase 2 |
 
@@ -154,7 +154,7 @@
 | FR-09-03 | `akari-pool ls [--item-type] [--limit]` | Must | ✅ Phase 1 |
 | FR-09-04 | `akari-pool cat <id>` | Must | ✅ Phase 1 |
 | FR-09-05 | `akari-pool rm <id>` | Must | ✅ Phase 1 |
-| FR-09-06 | `akari-pool workspace create / list / info / use / delete` | Must | ✅ Phase 2 |
+| FR-09-06 | `akari-pool library create / list / info / use / delete` | Must | ✅ Phase 2 |
 | FR-09-07 | `akari-pool search "query" [--cross]` | Must | ✅ Phase 2 / 3.5 |
 | FR-09-08 | `akari-pool analyze <id>` | Must | ✅ Phase 3 |
 | FR-09-09 | `akari-pool compile-notes [--item <id>]` | Must | ✅ Phase 4 |
@@ -172,8 +172,8 @@
 | FR-10-01 | `pool-mcp` crate を `rmcp` で実装 | Must | ⬜ Phase 6 |
 | FR-10-02 | stdio + Streamable HTTP 両対応 | Must | ⬜ Phase 6 |
 | FR-10-03 | MCP ツール: `pool_ls / pool_cat / pool_grep / pool_search / pool_add / pool_lint / pool_compile_notes` | Must | ⬜ Phase 6 |
-| FR-10-04 | MCP リソース: `pool://item/{id}` / `pool://workspace/{name}` / `m2c://item/{id}/context` | Must | ⬜ Phase 6 |
-| FR-10-05 | workspace はセッション初期化時に固定 | Must | ⬜ Phase 6 |
+| FR-10-04 | MCP リソース: `pool://item/{id}` / `pool://library/{name}` / `m2c://item/{id}/context` | Must | ⬜ Phase 6 |
+| FR-10-05 | library はセッション初期化時に固定 | Must | ⬜ Phase 6 |
 | FR-10-06 | AKARI Video の既存 MCP サーバーと整合性を取る | Should | ⬜ Phase 6 |
 
 ### FR-11: 統合（Phase 7+）
@@ -257,16 +257,16 @@
 
 | FR グループ | 受入条件 |
 |---|---|
-| FR-01 基盤 | `akari-pool workspace create` → `workspace info` で情報取得、`workspace use` で永続化、`workspace delete --confirm` で削除まで一通り動く |
+| FR-01 基盤 | `akari-pool library create` → `library info` で情報取得、`library use` で永続化、`library delete --confirm` で削除まで一通り動く |
 | FR-02 CRUD | `add` → `ls` で可視、`cat` で本文取得、`rm` で消せる。MIME 自動判定が 8 モダリティで効く |
-| FR-03 検索 | 日本語 3 文字以上のクエリで部分一致ヒット、`--cross` で全 workspace 横断 |
+| FR-03 検索 | 日本語 3 文字以上のクエリで部分一致ヒット、`--cross` で全 library 横断 |
 | FR-04 Analyzer | `add --analyze` で `.md` / `.html` 記事が要約・タグ付けされ DB 保存、失敗しても item は保持 |
 | FR-05 LLM | `OPENROUTER_API_KEY` だけで動作、429 / Retry-After 時に指数バックオフでリトライ |
 | FR-06 Wiki | `compile-notes` で Obsidian 互換 frontmatter + 本文の .md が生成、`analyze` 成功で自動連鎖 |
 | FR-07 Relations | `add_relation` で関係追加、`list_item_relations` で backlink 取得 |
 | FR-08 Lint | Missing / Orphan が検出され DB 保存。Phase 4.5 完了時は Inconsistency / ConnectionGap も |
 | FR-09 CLI | 上記すべてが CLI から操作可能。`--help` で使い方が出る |
-| FR-10 MCP | `akari-pool mcp-serve` で Claude Code / Cursor から接続し、pool_search 等のツールを呼べる |
+| FR-10 MCP | `akari-pool mcp-serve` で Claude Code / Cursor から接続し、pool_search 等のツールを呼べる（library はセッション初期化時に固定） |
 | FR-11 統合 | AKARI Video が pool-core を依存に取り込み、動画系アイテムを編集できる |
 
 ---
