@@ -152,7 +152,7 @@ feature-dev フロー: Discovery → 質問整理 → アーキ設計 → 承認
 ```
 Phase 0（基盤）
   └→ Phase 1（pool-core）
-       └→ Phase 2（workspace）
+       └→ Phase 2（library）
             └→ Phase 3（analyzer）─ Phase 3.5（制限解消）
                  └→ Phase 4（wiki + lint）
                       ├→ Phase 4.5（lint 完成）─┐
@@ -175,7 +175,7 @@ Phase 4.5 / 5 / 6 は Phase 4 を親とする兄弟。3 つとも Phase 7 の前
 
 **成果物**:
 - `Cargo.toml` workspace ルート
-- `docs/design/*.md`（architecture / workspace-layer / analyzer-plugin / llm-strategy / akari-video-integration）
+- `docs/design/*.md`（architecture / library-layer / analyzer-plugin / llm-strategy / akari-video-integration）
 - GitHub リポジトリ（Private）
 
 ### Phase 1: pool-core 基本 CRUD ✅ 完了 (2026-04-08)
@@ -293,7 +293,7 @@ Phase 4.5 / 5 / 6 は Phase 4 を親とする兄弟。3 つとも Phase 7 の前
 **内容**:
 - **AkariNotes**: ノート系アイテムを編集する Obsidian 風ビュー
 - **AkariCMS**: 記事系アイテムを編集する CMS
-- **AkariSearch**: 全 workspace 横断検索の Web UI
+- **AkariSearch**: 全 library 横断検索の Web UI
 - **AkariBot**: Slack/Discord で Pool 検索
 
 **完了基準**:

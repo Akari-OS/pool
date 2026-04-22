@@ -21,14 +21,14 @@
 
 | ID | As a | I want to | So that |
 |----|------|-----------|---------|
-| UC-01 | P2 | 動画ファイルを workspace に追加し、AI に分析させる | 後から内容で検索できる |
+| UC-01 | P2 | 動画ファイルを library に追加し、AI に分析させる | 後から内容で検索できる |
 | UC-02 | P2 | 記事 `.md` を analyze → Wiki Compile → Obsidian で閲覧する | 機械可読と人間可読の両形式で知識を持てる |
-| UC-03 | P1/P2 | 特定の workspace 内で全文検索する | 目的別の作業空間内に閉じた調査ができる |
-| UC-04 | P1/P2 | `--cross` で全 workspace 横断検索する | 文脈を越えて過去の知見を引ける |
+| UC-03 | P1/P2 | 特定の library 内で全文検索する | 目的別の作業空間内に閉じた調査ができる |
+| UC-04 | P1/P2 | `--cross` で全 library 横断検索する | 文脈を越えて過去の知見を引ける |
 | UC-05 | P2 | Lint を実行して知識ベースの健全性を監視する | 表記揺れ・関係抜け・未分析アイテムを早期発見できる |
 | UC-06 | P1 | MCP 経由で pool_search / pool_add 等のツールを呼ぶ | エージェントがユーザー機の知識に直接アクセスできる |
 | UC-07 | P2 | Obsidian で Wiki ノートを編集し、AkariPool に反映する（Phase 5） | 人間・AI 共同編集が成立する |
-| UC-08 | P3 | pool-core crate を依存に追加して Workspace::search を叩く | 消費者アプリ間で同じ Pool を共有できる |
+| UC-08 | P3 | pool-core crate を依存に追加して Library::search を叩く | 消費者アプリ間で同じ Pool を共有できる |
 | UC-09 | P1 | アイテム間の関係（related / derived / cites 等）を追加する | 知識グラフが育っていく |
 | UC-10 | P2 | モデルプリセット（節約/バランス/高品質）を切り替える | コストと品質のバランスを状況に応じて制御できる |
 
@@ -36,19 +36,19 @@
 
 ## 3. 機能要件（Functional Requirements）
 
-### FR-01: Pool & Workspace 基盤
+### FR-01: Pool & Library 基盤
 
 | ID | 要件 | 優先度 | 状態 |
 |----|------|--------|------|
 | FR-01-01 | `Pool::open(root)` で AkariPool ルートを初期化し、SQLite schema v1 を自動適用 | Must | ✅ Phase 1 |
 | FR-01-02 | WAL モードで SQLite を開く | Must | ✅ Phase 1 |
-| FR-01-03 | Workspace の作成 / 一覧 / 情報取得 / 削除 | Must | ✅ Phase 2 |
+| FR-01-03 | Library の作成 / 一覧 / 情報取得 / 削除 | Must | ✅ Phase 2 |
 | FR-01-04 | 各 Library は独立した `pool.db` / `files/` / `notes/` / `library.toml` を持つ | Must | ✅ Phase 2 |
 | FR-01-05 | 現在 Library の解決順序: `--library` フラグ > `AKARI_POOL_LIBRARY` env > `config.toml` > `"default"` | Must | ✅ Phase 2 |
 | FR-01-06 | パストラバーサル対策（library 名の lexical 検査） | Must | ✅ Phase 2 |
 | FR-01-07 | `GlobalConfig` を `~/.akari-pool/config.toml` に永続化（current_library 等） | Must | ✅ Phase 2 |
-| FR-01-08 | Workspace に display 名・icon を設定可能 | Should | ✅ Phase 2 |
-| FR-01-09 | `Pool` 内で Workspace を `HashMap<String, Arc<Workspace>>` キャッシュ | Should | ✅ Phase 2 |
+| FR-01-08 | Library に display 名・icon を設定可能 | Should | ✅ Phase 2 |
+| FR-01-09 | `Pool` 内で Library を `HashMap<String, Arc<Library>>` キャッシュ | Should | ✅ Phase 2 |
 
 ### FR-02: アイテム CRUD
 
@@ -67,8 +67,8 @@
 
 | ID | 要件 | 優先度 | 状態 |
 |----|------|--------|------|
-| FR-03-01 | カレント workspace 内の全文検索 | Must | ✅ Phase 2 |
-| FR-03-02 | `--cross` で全 workspace 横断検索 | Must | ✅ Phase 2 |
+| FR-03-01 | カレント library 内の全文検索 | Must | ✅ Phase 2 |
+| FR-03-02 | `--cross` で全 library 横断検索 | Must | ✅ Phase 2 |
 | FR-03-03 | 日本語部分一致（FTS5 trigram トークナイザ） | Must | ✅ Phase 3.5 |
 | FR-03-04 | SQL インジェクション対策（FTS5 エスケープ） | Must | ✅ Phase 2 |
 | FR-03-05 | 1〜2 文字クエリは空結果を返す（trigram の性質上） | Accepted Limitation | ✅ Phase 3.5 |
@@ -80,10 +80,10 @@
 |----|------|--------|------|
 | FR-04-01 | `Analyzer` trait（`analyze(ctx, item) -> AnalysisResult`）を `pool-core` に定義 | Must | ✅ Phase 3 |
 | FR-04-02 | `AnalyzerRegistry` で ItemType ごとに Analyzer を登録・解決 | Must | ✅ Phase 3 |
-| FR-04-03 | `AnalyzerContext` に LLM クライアント・workspace ハンドルを注入 | Must | ✅ Phase 3 |
+| FR-04-03 | `AnalyzerContext` に LLM クライアント・library ハンドルを注入 | Must | ✅ Phase 3 |
 | FR-04-04 | `ArticleAnalyzer`: `.md` / `.html` 対応、pulldown-cmark + html2text、LLM で要約 + タグ抽出 | Must | ✅ Phase 3 / 3.5 |
 | FR-04-05 | `ArticleFormat` enum + `detect_format` + 空ファイル検出 | Must | ✅ Phase 3.5 |
-| FR-04-06 | `Workspace::analyze_item` + `add_item_and_analyze`（パーシャル成功対応） | Must | ✅ Phase 3 |
+| FR-04-06 | `Library::analyze_item` + `add_item_and_analyze`（パーシャル成功対応） | Must | ✅ Phase 3 |
 | FR-04-07 | `update_analysis_result` で ai_summary / ai_tags / context_json を DB 保存 | Must | ✅ Phase 3 |
 | FR-04-08 | `ImageAnalyzer`（Vision API、Gemini Flash 想定） | Should | ⬜ Phase 3 積み残し |
 | FR-04-09 | `AudioAnalyzer`（Whisper + BGM 検出） | Should | ⬜ Phase 3 積み残し |
@@ -104,7 +104,7 @@
 | FR-05-06 | 主力モデル: DeepSeek V3.2 / Qwen3 / GLM-4.6 / Gemini 2.5 Flash | Must | ✅ Phase 3 |
 | FR-05-07 | Claude Sonnet/Opus/Haiku / GPT-4o は禁止リスト | Must | ✅ Phase 3 |
 | FR-05-08 | モデルプリセット 6 種（💰節約/⚖️バランス/⚡パフォーマンス/🔒オフライン/🧪ハイブリッド/🎓高品質） | Should | ⬜ Phase 5+ |
-| FR-05-09 | 3 層設定（グローバル config → workspace.toml → CLI フラグ） | Should | ⬜ Phase 5+ |
+| FR-05-09 | 3 層設定（グローバル config → library.toml → CLI フラグ） | Should | ⬜ Phase 5+ |
 
 ### FR-06: Wiki Compile
 
@@ -117,7 +117,7 @@
 | FR-06-05 | `RelatedItemView` で backlink 表示 | Must | ✅ Phase 4 |
 | FR-06-06 | 原文抜粋は 2000 文字カット + コードフェンスで囲む | Must | ✅ Phase 4 |
 | FR-06-07 | `add --analyze` / `analyze` 成功時に auto-compile 連鎖 | Must | ✅ Phase 4 |
-| FR-06-08 | Workspace 跨ぎの relation は compile 対象外（v1 制限） | Accepted Limitation | ✅ Phase 4 |
+| FR-06-08 | Library 跨ぎの relation は compile 対象外（v1 制限） | Accepted Limitation | ✅ Phase 4 |
 | FR-06-09 | Obsidian 双方向同期（.md 編集 → Pool 反映） | Should | ⬜ Phase 5 |
 
 ### FR-07: Relations CRUD
@@ -128,7 +128,7 @@
 | FR-07-02 | `add_relation / list_relations / list_item_relations` API | Must | ✅ Phase 4 |
 | FR-07-03 | `RelationType`（related / derived / cites / ...） + `CreatedBy`（user / ai / system） | Must | ✅ Phase 4 |
 | FR-07-04 | `RelationType` / `CreatedBy` に `Display + FromStr` | Must | ✅ Phase 4 |
-| FR-07-05 | Workspace 跨ぎ relation（`target_workspace` 非 NULL） | Should | ✅ Phase 4 |
+| FR-07-05 | Library 跨ぎ relation（`target_library` 非 NULL） | Should | ✅ Phase 4 |
 | FR-07-06 | Relation CLI（`akari-pool relation add / list / rm`） | Must | ⬜ Phase 4.5 |
 | FR-07-07 | Filed-back ループ（会話から自動追記） | Should | ⬜ Phase 5 |
 
@@ -208,7 +208,7 @@
 
 | ID | 要件 |
 |----|------|
-| NFR-03-01 | カレント workspace の search は 10 万件規模で 100ms 以内 |
+| NFR-03-01 | カレント library の search は 10 万件規模で 100ms 以内 |
 | NFR-03-02 | `analyze` は 1 アイテムあたり 30 秒以内（LLM レイテンシ依存） |
 | NFR-03-03 | `compile-notes` は 1000 アイテムで 10 秒以内 |
 | NFR-03-04 | SQLite は WAL モードで並行読み取り許容 |
@@ -219,8 +219,8 @@
 |----|------|
 | NFR-04-01 | API キーは `~/.akari-pool/.env`（600 permission、.gitignore 済み） |
 | NFR-04-02 | SQL インジェクション対策（バインドパラメータ、FTS5 エスケープ） |
-| NFR-04-03 | パストラバーサル対策（workspace 名の lexical 検査） |
-| NFR-04-04 | 破壊的コマンド（`rm` / `workspace delete`）は `--confirm` 必須 |
+| NFR-04-03 | パストラバーサル対策（library 名の lexical 検査） |
+| NFR-04-04 | 破壊的コマンド（`rm` / `library delete`）は `--confirm` 必須 |
 | NFR-04-05 | 外部 API キーをログ・stderr に出力しない |
 
 ### NFR-05: ライセンス & 配布
@@ -235,8 +235,8 @@
 
 | ID | 要件 |
 |----|------|
-| NFR-06-01 | パーソナル規模（〜10 万アイテム / workspace）を想定 |
-| NFR-06-02 | Workspace 数は数十程度まで |
+| NFR-06-01 | パーソナル規模（〜10 万アイテム / library）を想定 |
+| NFR-06-02 | Library 数は数十程度まで |
 | NFR-06-03 | マルチユーザー協調はスコープ外 |
 
 ### NFR-07: 開発規約
@@ -278,7 +278,7 @@
 - **GUI** — AkariPool 本体は GUI を持たない。GUI は消費者アプリ（AKARI Video / 将来の AkariNotes 等）の責務
 - **Cloud sync** — 将来 opt-in の別レイヤー（AKARI Cloud）として分離。コアには組み込まない
 - **マルチユーザー協調** — パーソナル規模想定。複数人同時編集・権限管理は扱わない
-- **Federation / P2P** — 横断は同一マシン内の workspace 間のみ
+- **Federation / P2P** — 横断は同一マシン内の library 間のみ
 - **Full LLM ローカル化の強制** — ローカル LLM は「選択肢の 1 つ」。デフォルトでは要求しない
 - **Undo / Version Stacking** — raw ファイルは immutable。編集履歴は消費者アプリ側の責務
 - **認証・アクセス制御** — ローカルファイルシステムの権限に依拠
