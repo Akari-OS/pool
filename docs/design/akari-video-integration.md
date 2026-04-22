@@ -92,12 +92,25 @@ AKARI Video (~/_project/akari-video/)
 
 `akari-video/src-tauri/Cargo.toml`:
 ```toml
-[dependencies]
-akari-pool-core = { path = "../../akari-pool-impl/crates/pool-core" }
-akari-pool-workspace = { path = "../../akari-pool-impl/crates/pool-workspace" }
+# --- 開発時（pool-impl リポをローカルにクローン済みの場合） ---
+# [dependencies]
+# akari-pool-core    = { path = "../../../pool-impl/crates/pool-core" }
+# akari-pool-library = { path = "../../../pool-impl/crates/pool-library" }
+
+# --- リリース時（組織内 private リポ参照） ---
+# NOTE: pool-impl は Akari-OS 組織の private リポ。アクセスには SSH 鍵または
+#       GitHub Personal Access Token が必要。
+[dependencies.akari-pool-core]
+git = "ssh://git@github.com/Akari-OS/pool-impl.git"
+tag = "v0.x.x"   # 実際のリリースタグに置き換える
+
+[dependencies.akari-pool-library]
+git = "ssh://git@github.com/Akari-OS/pool-impl.git"
+tag = "v0.x.x"   # 実際のリリースタグに置き換える
 ```
 
-開発時は path 依存、リリース時は git tag 参照に切り替え。
+開発時は local path 依存（コメントアウト部分）、リリース時は git tag 参照に切り替え。
+pool-impl は private リポのため、外部コントリビューターが利用する場合は別途アクセス申請が必要。
 
 ---
 
@@ -152,7 +165,7 @@ AKARI Video 側に薄いラッパを作る:
 ```rust
 // src-tauri/src/pool_client.rs
 use akari_pool_core::Pool;
-use akari_pool_workspace::WorkspaceConfig;
+use akari_pool_library::LibraryConfig;
 
 pub struct PoolClient {
     pool: Pool,
@@ -170,8 +183,8 @@ impl PoolClient {
 
         // デフォルト workspace を取得 or 作成
         let ws_name = "akari-video-default".to_string();
-        if !pool.workspace_exists(&ws_name)? {
-            pool.create_workspace(WorkspaceConfig {
+        if !pool.library_exists(&ws_name)? {
+            pool.create_library(LibraryConfig {
                 name: ws_name.clone(),
                 display_name: Some("AKARI Video デフォルト".into()),
                 intent: Some("video_project".into()),
@@ -185,8 +198,8 @@ impl PoolClient {
 
     // 既存 Tauri コマンドが期待する API をそのまま提供
     pub async fn list_items(&self) -> Result<Vec<PoolItem>> {
-        let ws = self.pool.workspace(&self.default_workspace)?;
-        ws.list_items().await
+        let lib = self.pool.library(&self.default_workspace)?;
+        lib.list_items().await
     }
 
     // ... 他の薄いラッパ
@@ -284,7 +297,7 @@ AKARI Video の `src-tauri/src/mcp/` を以下のように扱う:
 ## 7. 関連ドキュメント
 
 - [`architecture.md`](./architecture.md) — AkariPool 全体設計
-- [`workspace-layer.md`](./workspace-layer.md) — Workspace モデル
+- [`library-layer.md`](./library-layer.md) — Library モデル
 - [`analyzer-plugin.md`](./analyzer-plugin.md) — Analyzer Plugin
 - AKARI Video 側: `docs/research/hosted-filesystems-for-agents-survey-2026.md`
 - AKARI Video 側: `docs/design/akari-pkb-architecture-visual.html`
