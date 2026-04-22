@@ -4,7 +4,7 @@
 > **扱う範囲**: 公開 API、プロトコル仕様、Getting Started、外部統合ガイド、公開 Phase ロードマップ
 > **扱わない範囲**: Rust 実装コード（→ `akari-pool-impl`）、非公開戦略・競合分析（→ Hub `akari-os/docs/strategy/`）
 >
-> - 🌐 正典: [Akari-OS](https://github.com/Akari-OS)
+> - 🌐 正典: [Akari-OS/.github](https://github.com/Akari-OS)
 > - 🏛 Hub（非公開）: `akari-os` — 横断研究・戦略・Master Index
 > - 🗺 全リポマップ: `akari-os/MAP.md`
 
@@ -41,7 +41,7 @@ docs/
 ├── integration/           ← 外部システム統合
 ├── planning/              ← ロードマップ・タスク管理
 ├── api/                   ← 公開 API リファレンス
-└── handoff-YYYY-MM-DD.md  ← セッション末スナップショット
+└── archive/               ← セッション末スナップショット（archive）
 ```
 
 ---
@@ -76,7 +76,7 @@ docs/
 
 | ファイル | 内容 |
 |---|---|
-| [handoff-2026-04-08.md](handoff-2026-04-08.md) | Phase 4 完了時点（最新） |
+| [handoff-2026-04-08.md](archive/handoff-2026-04-08.md) | Phase 4 完了時点（archive 済み） |
 
 ---
 
