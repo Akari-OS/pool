@@ -9,7 +9,7 @@
 
 ## 1. 目的
 
-AkariPool の Wiki 層（`~/.akari-pool/workspaces/{name}/notes/`）を Obsidian Vault としてマウントし、**Obsidian を AkariPool のリッチクライアントにする**。動画・音声・PDF 全部 Obsidian 内で再生・閲覧でき、関係グラフを Obsidian の Graph View で可視化できる。
+AkariPool の Wiki 層（`~/.akari-pool/libraries/{name}/notes/`）を Obsidian Vault としてマウントし、**Obsidian を AkariPool のリッチクライアントにする**。動画・音声・PDF 全部 Obsidian 内で再生・閲覧でき、関係グラフを Obsidian の Graph View で可視化できる。
 
 ### なぜ Obsidian か
 
@@ -58,7 +58,7 @@ AkariPool の Wiki 層（`~/.akari-pool/workspaces/{name}/notes/`）を Obsidian
 
 | # | 機能 | 説明 | 工数 |
 |---|---|---|---|
-| 1 | **Vault マウント自動検出** | `~/.akari-pool/workspaces/*/notes/` を Obsidian Vault として開ける | 半日 |
+| 1 | **Vault マウント自動検出** | `~/.akari-pool/libraries/*/notes/` を Obsidian Vault として開ける | 半日 |
 | 2 | **Workspace セレクタ** | 左サイドバーで workspace 切替 | 1日 |
 | 3 | **`pool://` リンク解決** | `[[pool:item-id]]` で他アイテムへリンク、自動補完 | 1日 |
 | 4 | **メタデータパネル** | 開いているノートの Pool DB 情報を右ペインに表示 | 1日 |
@@ -99,7 +99,7 @@ AkariPool の Wiki 層（`~/.akari-pool/workspaces/{name}/notes/`）を Obsidian
 ```typescript
 import Database from 'better-sqlite3';
 
-const db = new Database('~/.akari-pool/workspaces/wedding-2026/pool.db', {
+const db = new Database('~/.akari-pool/libraries/wedding-2026/pool.db', {
   readonly: true
 });
 const items = db.prepare('SELECT * FROM pool_items LIMIT 10').all();
@@ -138,7 +138,7 @@ const result = await client.callTool('pool_search', { query: '結婚式' });
 ### 4-3. 全体構造
 
 ```
-~/.akari-pool/workspaces/wedding-2026/
+~/.akari-pool/libraries/wedding-2026/
 ├── files/                              ← raw 層（動画・音声・画像）
 │   ├── {uuid-1}/ceremony.mp4
 │   └── {uuid-1}/ceremony_proxy.mp4    ← Obsidian 用プロキシ

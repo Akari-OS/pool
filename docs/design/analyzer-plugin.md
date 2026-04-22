@@ -78,7 +78,7 @@ pub struct AnalyzerSupport {
 
 /// 分析実行時のコンテキスト
 pub struct AnalyzerContext {
-    pub workspace: WorkspaceInfo,
+    pub library: LibraryInfo,
     pub config: AnalyzerConfig,
     pub progress_tx: ProgressSender,        // 進捗通知用
     pub cancel_token: CancellationToken,    // 中断要求
