@@ -4,7 +4,7 @@
 > AI エージェントのための、モダリティ中立な汎用ナレッジベース。
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Status](https://img.shields.io/badge/status-early--development-orange.svg)](#status)
+[![Status](https://img.shields.io/badge/status-Phase%206-green.svg)](#status)
 [![Part of Akari-OS](https://img.shields.io/badge/part_of-Akari--OS-f97316.svg)](https://github.com/Akari-OS)
 
 ---
@@ -147,17 +147,17 @@ AkariPool は [**Akari-OS**](https://github.com/Akari-OS) エコシステムの 
 
 ## 🚧 Status
 
-**Early development — Phase 4.5**
+**Phase 6 完了 — MCP サーバー稼働中（34 ツール提供）**
 
-現在実装中：
-- ✅ SQLite + FTS5 基盤
-- ✅ Library 隔離 + 横断検索
-- ✅ ArticleAnalyzer (MVP)
-- ✅ Wiki compile + Relations CRUD + Linter (2/4 種)
-- 🟡 **次**: Inconsistency / ConnectionGap Linter + Relation CLI
-- ⬜ Filed back ループ
-- ⬜ MCP server 化
-- ⬜ AKARI Video 統合
+現在の実装進捗（impl 側 `akari-pool-impl` 準拠）:
+- ✅ Phase 0–1: SQLite + FTS5 + pool-core CRUD / CLI
+- ✅ Phase 2: Library 隔離 + 横断検索
+- ✅ Phase 3–3.5: Analyzer trait + ArticleAnalyzer + FTS5 trigram + HTML 対応
+- ✅ Phase 4–4.5: Wiki compile + Relations CRUD + Linter 4 種 + Relation CLI
+- ✅ Phase 5: LLM プリセット 6 種 + 3 層設定マージ（Obsidian sync を含む）
+- ✅ Phase 6: MCP サーバー (`pool-mcp`, rmcp) + 会話履歴永続化 + Pool Browser MVP（**34 ツール**、詳細は [`docs/reference/mcp-tools.md`](./docs/reference/mcp-tools.md)）
+- 🟡 **次**: Phase 7（AkariShell 統合 — AKARI Video を Shell アプリとして再利用）
+- ⬜ Phase 8: AkariNotes / AkariCMS / AkariSearch
 
 詳細は [docs/planning/roadmap.md](./docs/planning/roadmap.md) を参照。
 

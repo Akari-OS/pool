@@ -282,15 +282,15 @@ AKARI Video の `src-tauri/src/mcp/` を以下のように扱う:
 
 | Phase | 内容 | 期間目安 |
 |---|---|---|
-| **A** | AkariPool Phase 1 (pool-core 実装) 完了を待つ | TBD |
+| **A** | AkariPool Phase 1 (pool-core 実装) 完了を待つ | ✅ 完了（2026-04-08） |
 | **B** | スキーマ・マッピング設計 | 数日 |
 | **C** | マイグレーションスクリプト実装 | 数日 |
 | **D** | pool_client.rs 実装 + Tauri コマンド書き換え | 1週間 |
 | **E** | 旧 pool/ 削除 + テスト | 数日 |
-| **F** | MCP サーバー再設計 | 1週間 |
-| **G** | AkariPool v0.1.0 リリース | TBD |
+| **F** | MCP サーバー再設計 | ✅ 完了（2026-04 Phase 6、34 ツール実装） |
+| **G** | AkariPool v0.1.0 リリース | 未リリース（Phase 7 AkariShell 統合と合わせて判断予定） |
 
-合計: AkariPool Phase 1 完了後、約 3〜4 週間で AKARI Video 統合完了。
+> **注**: 本タイムラインは 2026-04-24 時点で一部陳腐化。Phase A と F は先行完了し、AkariShell 統合（Phase 7）着手前の状態。再設計要否は impl 側 README.md の Phase 表を SSOT として判断する。
 
 ---
 

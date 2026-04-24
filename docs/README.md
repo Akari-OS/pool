@@ -40,7 +40,7 @@ docs/
 ├── design/                ← 要件・アーキテクチャ・個別設計
 ├── integration/           ← 外部システム統合
 ├── planning/              ← ロードマップ・タスク管理
-├── api/                   ← 公開 API リファレンス
+├── reference/             ← 公開 API / MCP ツールリファレンス
 └── archive/               ← セッション末スナップショット（archive）
 ```
 
@@ -61,6 +61,12 @@ docs/
 | [library-layer.md](design/library-layer.md) | Library 隔離モデル — 目的別作業空間・横断検索・物理構造 |
 | [workspace-session-layer.md](design/workspace-session-layer.md) | Workspace / Session 層 — 短命作業領域・focus.md・CAA 連携 |
 | [workflow-layer.md](design/workflow-layer.md) | Workflow 層 — Skill / Workflow / Template フレームワーク・Runner |
+
+### reference/ — API / ツールリファレンス
+
+| ファイル | 内容 |
+|---|---|
+| [mcp-tools.md](reference/mcp-tools.md) | `pool-mcp` が提供する 34 MCP ツールの全カタログ（カテゴリ別、2026-04-24 時点） |
 
 ### integration/ — 外部統合
 

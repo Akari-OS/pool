@@ -202,7 +202,7 @@ fn atomic_append(path: &Path, line: &[u8]) -> Result<()> {
 
 ## 7. MCP ツール一覧
 
-HUB-017 で追加された MCP ツール（既存の `pool_ls` / `pool_search` 等と合わせて合計 21 ツール）:
+HUB-017 で追加された Workspace/Session 系 MCP ツール（本節）と、既存の `pool_ls` / `pool_search` 等を合わせ、Phase 6 到達時点で **合計 34 ツール**。全 34 ツールの一覧とカテゴリ別整理は [`../reference/mcp-tools.md`](../reference/mcp-tools.md) を参照。以下は本レイヤー（Workspace / Session）が提供する部分:
 
 | ツール | 説明 |
 |---|---|

@@ -2,7 +2,7 @@
 
 > **バージョン**: v0.1 Draft
 > **最終更新**: 2026-04-08
-> **ステータス**: Phase 1 完了 (2026-04-08) → 次は Phase 2 (Library 隔離)
+> **ステータス**: Phase 0–6 完了（2026-04 時点）→ 次は Phase 7（AkariShell 統合、AKARI Video のアプリ化）。詳細進捗は impl 側 `akari-pool-impl/README.md` を正典とする
 
 ---
 
@@ -588,13 +588,17 @@ pool.register_analyzer(Box::new(MyFormatAnalyzer));
 |---|---|---|:-:|
 | **0** | 全体 | プロジェクト構造、設計書、Cargo workspace | ✅ 完了 |
 | **1** | pool-core | SQLite スキーマ、CRUD、基本 CLI、PoolItem の add/list/get/rm | ✅ 完了 |
-| **2** | pool-library | Library 隔離、横断検索、共有レイヤー | 🟡 **次** |
-| **3** | analyzer crates | Analyzer trait、article/image/audio/video を順次実装 | ⬜ |
-| **4** | pool-core + pool-lint | Wiki Compile、`pool_compile_notes`、Linting エンジン | ⬜ |
-| **5** | pool-core | Filed back ループ、FiledBackHook trait | ⬜ |
-| **6** | pool-mcp | MCP サーバー実装、Resource/Tool/Subscribe | ⬜ |
-| **7** | (AKARI Video 側) | AKARI Video の pool/ モジュールを akari-pool 依存に置換 | ⬜ |
+| **2** | pool-library | Library 隔離、横断検索、共有レイヤー | ✅ 完了 |
+| **3** | analyzer crates | Analyzer trait、article/image/audio/video を順次実装 | ✅ 完了 |
+| **3.5** | pool-core + analyzer | FTS5 trigram、HTML 対応、LLM リトライ | ✅ 完了 |
+| **4** | pool-core + pool-lint | Wiki Compile、`pool_compile_notes`、Linter 2/4 種 | ✅ 完了 |
+| **4.5** | pool-lint + CLI | Linter 4 種揃え + Relation CLI | ✅ 完了 |
+| **5** | pool-core | LLM プリセット 6 種、3 層設定マージ、Obsidian sync | ✅ 完了 |
+| **6** | pool-mcp | MCP サーバー実装（rmcp、34 ツール）+ 会話履歴永続化 + Pool Browser MVP | ✅ 完了 |
+| **7** | (AkariShell 側) | AkariShell 統合、AKARI Video をアプリとして再利用 | 🟡 **次** |
 | **8** | 別プロジェクト | AkariNotes / AkariCMS / AkariSearch 着手 | ⬜ |
+
+> **注**: 本表は `akari-pool-impl/README.md` の Phase 表を SSOT とし、同期のうれしくない遅延を防ぐため impl 側 commit と合わせて本ファイルも更新する運用（運用ルール: `docs/README.md` 末尾を参照）。
 
 ### Phase 1 完了サマリ (2026-04-08)
 
