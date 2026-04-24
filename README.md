@@ -145,11 +145,12 @@ AkariPool は [**Akari-OS**](https://github.com/Akari-OS) エコシステムの 
 
 ---
 
-## 🚧 Status
+## Status
 
 **Phase 6 完了 — MCP サーバー稼働中（34 ツール提供）**
 
 現在の実装進捗（impl 側 `akari-pool-impl` 準拠）:
+
 - ✅ Phase 0–1: SQLite + FTS5 + pool-core CRUD / CLI
 - ✅ Phase 2: Library 隔離 + 横断検索
 - ✅ Phase 3–3.5: Analyzer trait + ArticleAnalyzer + FTS5 trigram + HTML 対応
