@@ -2,6 +2,8 @@
 
 > **Universal Knowledge Store for AI Agents.**
 > AI エージェントのための、モダリティ中立な汎用ナレッジベース。
+>
+> 📚 **Type: Documentation** — This repo holds public docs only. The implementation lives in `Akari-OS/pool-impl` (currently staged-public, private during beta).
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Status](https://img.shields.io/badge/status-Phase%206-green.svg)](#status)
