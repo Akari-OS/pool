@@ -17,7 +17,7 @@ AI エージェントが本棚を散歩するように知識を探索できる�
 - **複数の消費者アプリ**（AKARI Video / 将来の AkariNotes / AkariCMS / AkariSearch）から共有される
 - **raw 層 + Wiki 層（.md）** の二段構え。機械可読 / 人間可読 / 生データを同時に持つ
 - **Library モデル** で目的別に隔離、明示的に横断可能
-- **AGPL-3.0** でソース公開を担保
+- **Open Core モデル**: 実装 (`pool-impl`) は Apache 2.0、本公開ドキュメント (`pool-docs`) は CC BY 4.0 でソース公開を担保
 
 ```
 Phase 0-1:  pool-core（SQLite + CRUD + CLI）

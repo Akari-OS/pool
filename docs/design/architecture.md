@@ -42,7 +42,7 @@ AkariPool は **AI エージェントが本棚を散歩するように知識を�
 | 7 | **拡張性** | Analyzer/Linter/Output は trait で追加可能 |
 | 8 | **自己治癒** | Linting で表記揺れ・欠損・関係抜けを自動検出 |
 | 9 | **学習ループ** | Filed back で「使うほど賢くなる本棚」 |
-| 10 | **AGPL** | OSS 戦略の根幹 |
+| 10 | **Open Core (Apache 2.0)** | 実装 `pool-impl` は Apache 2.0、本公開ドキュメント `pool-docs` は CC BY 4.0。OSS 戦略の根幹 |
 
 ---
 

@@ -5,7 +5,7 @@
 >
 > 📚 **Type: Documentation** — This repo holds public docs only. The implementation lives in `Akari-OS/pool-impl` (currently staged-public, private during beta).
 
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Status](https://img.shields.io/badge/status-Phase%206-green.svg)](#status)
 [![Part of Akari-OS](https://img.shields.io/badge/part_of-Akari--OS-f97316.svg)](https://github.com/Akari-OS)
 
@@ -37,7 +37,7 @@
 
 ### ローカルファースト
 
-クラウド依存ではなく、**全データはあなたのマシンに留まる**。AGPL-3.0 でソース公開を担保。将来の Cloud sync は opt-in で別レイヤー。
+クラウド依存ではなく、**全データはあなたのマシンに留まる**。実装 (`pool-impl`) は Apache 2.0 で公開予定。将来の Cloud sync は opt-in で別レイヤー。
 
 ### エージェントが育てる知識庫
 
@@ -74,7 +74,7 @@ AI との会話で発見された関係性を自動で蓄積する **Filed back 
 3. **Library 隔離** — プロジェクトごとに分離、明示的に横断可能
 4. **Linting（自己治癒）** — 表記揺れ検出・関係抜け補完・未分類アラート
 5. **Filed back ループ** — AI との対話で発見された関係性を自動追記
-6. **ローカルファースト + AGPL** — 全データはあなたのマシンに留まる
+6. **ローカルファースト + Open Core** — 全データはあなたのマシンに留まる。実装 (`pool-impl`) は Apache 2.0、本ドキュメントは CC BY 4.0
 
 詳細は [docs/design/architecture.md](./docs/design/architecture.md) を参照。
 
@@ -184,10 +184,10 @@ Akari-OS エコシステムへの貢献は大歓迎です。
 
 ## 📜 License
 
-**[AGPL-3.0](./LICENSE)** — GNU Affero General Public License v3.0
+**本リポジトリ（公開ドキュメント）**: [CC BY 4.0](./LICENSE) — Creative Commons Attribution 4.0 International
+**実装本体（`Akari-OS/pool-impl`）**: Apache 2.0（ローカルファースト + Open Core 戦略の基盤層）
 
-AkariPool はローカルファーストかつ自由なソフトウェアとして設計されています。
-派生物を SaaS 化する場合も、ソースコードの公開が求められます。
+AKARI エコシステム全体は **Open Core モデル**（Apache 2.0 / MIT / CC BY 4.0 / proprietary の 4 層）で運用されている。詳細は [`akari-os/docs/governance/license-policy.md`](https://github.com/Akari-OS/.github)（公開正典側ポリシー）を参照。
 
 ---
 

@@ -227,7 +227,7 @@
 
 | ID | 要件 |
 |----|------|
-| NFR-05-01 | AGPL-3.0 でソース公開を担保 |
+| NFR-05-01 | 実装 (`pool-impl`) は Apache 2.0、本公開ドキュメント (`pool-docs`) は CC BY 4.0 で公開（Open Core 戦略 / `akari-os/docs/governance/license-policy.md` Layer 2 / 4） |
 | NFR-05-02 | Rust crate / CLI バイナリ / MCP サーバー の 3 面で提供する |
 | NFR-05-03 | `cargo install --path crates/pool-cli` でバイナリが入る |
 
