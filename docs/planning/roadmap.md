@@ -1,7 +1,7 @@
 # AkariPool — ロードマップ
 
-> 最終更新: 2026-04-09
-> 上位ビジョン: `../../CLAUDE.md`（北極星）
+> 最終更新: 2026-05-08
+> 上位ビジョン: `../../CLAUDE.md`（北極星 — akari-os Hub の CLAUDE.md を指す。非公開リポのため外部読者からは参照不可）
 > 要件定義: `../design/requirements.md`
 > タスク詳細: `tasks.md`
 
@@ -113,24 +113,24 @@ feature-dev フロー: Discovery → 質問整理 → アーキ設計 → 承認
   Linter（Missing + Orphan）        ██████████ 100%  ✅
   CLI compile-notes / lint          ██████████ 100%  ✅
 
-═══ Phase 4.5: Linter 完成 + Relation CLI（次）═════════════════════
+═══ Phase 4.5: Linter 完成 + Relation CLI（完了）════════════════════
 
-  Inconsistency チェッカー          ░░░░░░░░░░   0%  🟡 次
-  ConnectionGap チェッカー          ░░░░░░░░░░   0%  🟡 次
-  Relation CLI                      ░░░░░░░░░░   0%  🟡 次
-  lint show                         ░░░░░░░░░░   0%  🟡 次
+  Inconsistency チェッカー          ██████████ 100%  ✅
+  ConnectionGap チェッカー          ██████████ 100%  ✅
+  Relation CLI                      ██████████ 100%  ✅
+  lint show                         ██████████ 100%  ✅
 
-═══ Phase 5: Filed-back ループ ════════════════════════════════════
+═══ Phase 5: Filed-back ループ（完了）═══════════════════════════════
 
-  notes/ 編集 → Pool 反映           ░░░░░░░░░░   0%
-  [[backlink]] → relation 自動作成  ░░░░░░░░░░   0%
-  モデルプリセット UI               ░░░░░░░░░░   0%
+  notes/ 編集 → Pool 反映           ██████████ 100%  ✅
+  [[backlink]] → relation 自動作成  ██████████ 100%  ✅
+  モデルプリセット UI（6 プリセット）██████████ 100%  ✅
 
-═══ Phase 6: MCP サーバー ═════════════════════════════════════════
+═══ Phase 6: MCP サーバー（完了）═══════════════════════════════════
 
-  pool-mcp crate（rmcp）            ░░░░░░░░░░   0%
-  stdio + Streamable HTTP           ░░░░░░░░░░   0%
-  pool_* ツール + pool://library/ リソース  ░░░░░░░░░░   0%
+  pool-mcp crate（rmcp）            ██████████ 100%  ✅
+  stdio + Streamable HTTP           ██████████ 100%  ✅
+  pool_* ツール + pool://library/ リソース  ██████████ 100%  ✅
 
 ═══ Phase 7: AKARI Video 統合 ═════════════════════════════════════
 
@@ -231,7 +231,7 @@ Phase 4.5 / 5 / 6 は Phase 4 を親とする兄弟。3 つとも Phase 7 の前
 - `lint` で Missing / Orphan が検出され DB 保存される
 - `analyze` 成功時に auto-compile が連鎖する
 
-### Phase 4.5: Linter 完成 + Relation CLI 🟡 次
+### Phase 4.5: Linter 完成 + Relation CLI ✅ 完了 (2026-04-22)
 
 **目的**: Phase 4 で積み残した Lint チェッカー 2 種を実装し、Relation を CLI から操作可能にする。
 
@@ -250,7 +250,7 @@ Phase 4.5 / 5 / 6 は Phase 4 を親とする兄弟。3 つとも Phase 7 の前
 
 **依存**: Phase 4 の Relations CRUD と Linter フレームワーク
 
-### Phase 5: Filed-back ループ
+### Phase 5: Filed-back ループ ✅ 完了 (2026-04-22)
 
 **目的**: ユーザーが Obsidian で編集した `notes/{uuid}.md` を Pool に書き戻し、知識ベースが人間・AI 共同編集可能な状態にする。
 
@@ -268,7 +268,7 @@ Phase 4.5 / 5 / 6 は Phase 4 を親とする兄弟。3 つとも Phase 7 の前
 - `[[item-id]]` 記法で relation が作られる
 - CLI フラグで 6 プリセットを選択できる
 
-### Phase 6: MCP サーバー
+### Phase 6: MCP サーバー ✅ 完了 (2026-05-08)
 
 **目的**: 外部 AI エージェント（Claude Code / Cursor 等）から AkariPool にアクセス可能にする。
 

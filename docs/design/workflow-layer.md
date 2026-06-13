@@ -100,3 +100,7 @@ Selection（HUB-019）3 ツールと合わせて、pool-mcp は計 **29 ツー�
 - AKARI-HUB-018 `spec-skill-workflow-template-framework` — フレームワーク仕様（v0.4 / accepted）（非公開 Hub リポ管理）
 - AKARI-HUB-019 `spec-context-handoff-tools` — Selection（v0.2 / accepted）（非公開 Hub リポ管理）
 - AKARI-HUB-017 `spec-memory-layer-structure` — Memory Layer（依存）（非公開 Hub リポ管理）
+
+## 関連ドキュメント
+
+- [**MCP ツールリファレンス §7: Workflow 操作**](../reference/mcp-tools.md) — `workflow_run` / `workflow_status` / `workflow_approve` / `workflow_reject` / `workflow_list` / `agent_invoke` の引数・戻り値・使用例

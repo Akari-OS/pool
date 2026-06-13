@@ -4,7 +4,7 @@
 > **生成元**: `akari-pool-impl/crates/pool-mcp/src/server.rs` の `#[tool(...)]` 注釈（2026-04-24 時点で **34 ツール**）
 > **呼び出し**: Claude Code / Cursor 等の MCP クライアントから `akari-pool mcp-serve` 経由で利用
 
-このリポジトリは公開ドキュメント側のため、各ツールの実装本体・入力 struct 定義・エラー型は実装リポ側を参照のこと。詳細パラメータは [`akari-pool-impl/crates/pool-mcp/src/server.rs`](https://github.com/Akari-OS/pool-impl/blob/main/crates/pool-mcp/src/server.rs) を見るのが最も正確。
+このリポジトリは公開ドキュメント側のため、各ツールの実装本体・入力 struct 定義・エラー型は実装リポ側を参照のこと。詳細パラメータは `akari-pool-impl/crates/pool-mcp/src/server.rs` を見るのが最も正確（**注**: `pool-impl` はベータ期間中 private リポのため、現時点では外部ユーザーからアクセス不可。公開時にリンクを有効化予定 <!-- TODO: pool-impl 公開後に https://github.com/Akari-OS/pool-impl/blob/main/crates/pool-mcp/src/server.rs へリンクを復元 -->）。
 
 ---
 

@@ -124,6 +124,9 @@ akari-pool mcp-serve --http --port 7890
 - 🧩 [**Analyzer Plugin**](./docs/design/analyzer-plugin.md) — モダリティ拡張方法
 - 🧠 [**LLM 戦略**](./docs/design/llm-strategy.md) — LLM の使い方
 - 🗓 [**ロードマップ**](./docs/planning/roadmap.md) — Phase 別計画
+- ✅ [**タスク管理**](./docs/planning/tasks.md) — フェーズ別チェックリスト・実装状況
+- 🗂 [**Workspace / Session 層**](./docs/design/workspace-session-layer.md) — 短命作業領域・focus.md・CAA 連携
+- ⚙️ [**Workflow 層**](./docs/design/workflow-layer.md) — Skill / Workflow / Template フレームワーク
 - 🔗 [**Obsidian 連携**](./docs/integration/obsidian-plugin.md) — Obsidian との統合
 - 🎬 [**AKARI Video 統合**](./docs/design/akari-video-integration.md) — Video アプリとの連携
 
